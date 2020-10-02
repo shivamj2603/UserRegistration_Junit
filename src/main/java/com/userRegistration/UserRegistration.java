@@ -44,7 +44,7 @@ public class UserRegistration {
 	}
 	public static String validatePassword(String password) {
 		String result = "";
-		if(validateInput(password, "^(?=.*[A-Z]).{8,}$")) {
+		if(validateInput(password, "^(?=.*\\d)(?=.*[A-Z]).{8,}$")) {
 			result = "valid";
 		}
 		else {
