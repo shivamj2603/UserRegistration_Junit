@@ -32,6 +32,16 @@ public class UserRegistration {
 		}
 		return result;
 	}
+	public static String validateMobileNumber(String number) {
+		String result = "";
+		if(validateInput(number, "^[0-9]{2}?[ ][0-9]{4,13}")) {
+			result = "valid";
+		}
+		else {
+			result = "invalid";
+		}
+		return result;
+	}
 	public static void main(String[] args) {
 		UserRegistration user = new UserRegistration();
 		String test = "";
@@ -46,6 +56,9 @@ public class UserRegistration {
 		System.out.println("Enter the Email");
 		test=input.nextLine();
 		System.out.println(user.validateEmail(test));//validation of email
+		System.out.println("Enter the Mobile Number");
+		test = input.nextLine();
+		System.out.println(user.validateMobileNumber(test));//validation of MobileNumber
 	}
 
 }
