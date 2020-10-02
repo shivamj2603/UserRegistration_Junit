@@ -22,6 +22,16 @@ public class UserRegistration {
 		}
 		return result;
 	}
+	public static String validateEmail(String email) {
+		String result = "";
+		if(validateInput(email, "(abc[.][A-Za-z]+@bl[.]co[.][A-Za-z]{2,})$")) {
+			result = "valid";
+		}
+		else {
+			result = "invalid";
+		}
+		return result;
+	}
 	public static void main(String[] args) {
 		UserRegistration user = new UserRegistration();
 		String test = "";
@@ -32,8 +42,10 @@ public class UserRegistration {
 		System.out.println(result);
 		System.out.println("Enter the last name");
 		test = input.nextLine();
-		result = user.validateName(test);//validation of first name	
-		System.out.println(result);
+		System.out.println(user.validateName(test));//validation of last name
+		System.out.println("Enter the Email");
+		test=input.nextLine();
+		System.out.println(user.validateEmail(test));//validation of email
 	}
 
 }
