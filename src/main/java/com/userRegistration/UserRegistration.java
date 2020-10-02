@@ -52,6 +52,12 @@ public class UserRegistration {
 		}
 		return result;
 	}
+	public static void verifyEmail(String[] email) {
+		for(int i = 0; i <= 20; i++)
+		{
+			System.out.println(validateEmail(email[i]));
+		}
+	}
 	public static void main(String[] args) {
 		UserRegistration user = new UserRegistration();
 		String test = "";
@@ -72,6 +78,11 @@ public class UserRegistration {
 		System.out.println("Enter the Password");
 		test = input.nextLine();
 		System.out.println(user.validatePassword(test));//validation of Password
+		String[] emails = {"abc-100@yahoo.com","abc.100@yahoo.com","abc111@abc.com","abc-100@abc.net","abc.100@abc.com.au","abc@1.com",
+				"abc@gmail.com.com","abc+100@gmail.com","abc","abc@gmail.com.aa.au","abc@gmail.com.1a","abc@abc@gmail.com",
+				"abc.@gmail.com","abc..2002@gmail.com","abc@%*.com","abc()*@gmail.com",".abc@abc.com","abc123@.com.com","abc123@.com",
+				"abc123@gmail.a","abc@.com.my"};
+		verifyEmail(emails);
 	}
 
 }
