@@ -1,24 +1,26 @@
 package com.userRegistration;
-
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 public class UserRegistration {
-	public static void validateInput(String input,String expression)
+	public static boolean validateInput(String input,String expression)
 	{
-		String result;
 		String regex = expression;
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(input);
-		if(matcher.find()) {
-			result = input + " is valid";
+		return matcher.find();
+	}
+	public static String validateFirstName(String firstName) {
+		String result = "";
+		if(validateInput(firstName, "^[A-Z]{1}[a-zA-z]{2,}")) {
+			result = "valid";
 		}
 		else {
-			result = input + " is not valid";
+			result = "invalid";
 		}
-		System.out.println(result);
+		return result;
 	}
 	public static void main(String[] args) {
 		UserRegistration user = new UserRegistration();
@@ -26,7 +28,8 @@ public class UserRegistration {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter the first name");
 		test = input.nextLine();
-		user.validateInput(test,"^[A-Z]{1}[a-zA-z]{2,}");//validation of first name	
+		String result = user.validateFirstName(test);//validation of first name	
+		System.out.println(result);
 	}
 
 }
