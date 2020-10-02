@@ -12,9 +12,9 @@ public class UserRegistration {
 		Matcher matcher = pattern.matcher(input);
 		return matcher.find();
 	}
-	public static String validateFirstName(String firstName) {
+	public static String validateName(String name) {
 		String result = "";
-		if(validateInput(firstName, "^[A-Z]{1}[a-zA-z]{2,}")) {
+		if(validateInput(name, "^[A-Z]{1}[a-zA-z]{2,}")) {
 			result = "valid";
 		}
 		else {
@@ -28,7 +28,11 @@ public class UserRegistration {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter the first name");
 		test = input.nextLine();
-		String result = user.validateFirstName(test);//validation of first name	
+		String result = user.validateName(test);//validation of first name	
+		System.out.println(result);
+		System.out.println("Enter the last name");
+		test = input.nextLine();
+		result = user.validateName(test);//validation of first name	
 		System.out.println(result);
 	}
 
