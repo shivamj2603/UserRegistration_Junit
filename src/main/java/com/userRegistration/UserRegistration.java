@@ -42,6 +42,16 @@ public class UserRegistration {
 		}
 		return result;
 	}
+	public static String validatePassword(String password) {
+		String result = "";
+		if(validateInput(password, ".{8,}")) {
+			result = "valid";
+		}
+		else {
+			result = "invalid";
+		}
+		return result;
+	}
 	public static void main(String[] args) {
 		UserRegistration user = new UserRegistration();
 		String test = "";
@@ -59,6 +69,9 @@ public class UserRegistration {
 		System.out.println("Enter the Mobile Number");
 		test = input.nextLine();
 		System.out.println(user.validateMobileNumber(test));//validation of MobileNumber
+		System.out.println("Enter the Password");
+		test = input.nextLine();
+		System.out.println(user.validatePassword(test));//validation of Password
 	}
 
 }
