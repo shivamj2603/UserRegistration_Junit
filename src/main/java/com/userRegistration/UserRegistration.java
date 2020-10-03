@@ -24,7 +24,7 @@ public class UserRegistration {
 	}
 	public static String validateEmail(String email) {
 		String result = "";
-		if(validateInput(email, "^[a-z0-9_-]+[.|+]?[a-z0-9_-]+[@][a-z0-9]{1,}[.][a-z]{2,}[.]{0,1}[a-z]*")) {
+		if(validateInput(email, "^[a-z0-9_-]+(.|\\+)*[a-z0-9_-]+[@][a-z0-9]+(\\.[a-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
 			result = "valid";
 		}
 		else {
