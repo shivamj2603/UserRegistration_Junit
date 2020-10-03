@@ -24,7 +24,7 @@ public class UserRegistration {
 	}
 	public static String validateEmail(String email) {
 		String result = "";
-		if(validateInput(email, "(abc[.][A-Za-z]+@bl[.]co[.][A-Za-z]{2,})$")) {
+		if(validateInput(email, "^[a-z0-9_-]+[.|+]?[a-z0-9_-]+[@][a-z0-9]{1,}[.][a-z]{2,}[.]{0,1}[a-z]*")) {
 			result = "valid";
 		}
 		else {
@@ -44,7 +44,7 @@ public class UserRegistration {
 	}
 	public static String validatePassword(String password) {
 		String result = "";
-		if(validateInput(password, "^(?=.*\\d)(?=.*[A-Z])(?=.*(!@#$%^&*()_+-=)).{8,}$")) {
+		if(validateInput(password, "^(?=.*\\d)(?=.*[A-Z])(?=.*[@$!%*?&]).{8,}$")) {
 			result = "valid";
 		}
 		else {
