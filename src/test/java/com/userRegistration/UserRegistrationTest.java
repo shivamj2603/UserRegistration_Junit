@@ -5,49 +5,47 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-
-class UserRegistrationTest {
-	private String email;
-	private String expectedValue;
-	public UserRegistrationTest(String email, String expectedValue) {
-		super();
-		this.email = email;
-		this.expectedValue = expectedValue;
-	}
-	@Parameterized.Parameters
-	public static Collection input() {
-		return Arrays.asList(new Object[][] {{"abc-100@yahoo.com", "valid"}, {"abc@yahoo.com", "valid"}, {"abc.100@yahoo.com", "valid"}, 
-			{"abc111@abc.com", "valid"}, {"abc-100@abc.net", "valid"}, {"abc.100@abc.com.au", "valid"}, {"abc@1.com", "valid"}, {"abc@gmail.com.com", "valid"}, 
-			{"abc+100@gmail.com", "valid"}});
-	}	
+public class UserRegistrationTest{
+	UserRegistration user = new UserRegistration();
 	@Test
-	public void givenSamples_whenExpectedIsTrue_returnTrue() {
-		UserRegistration user = new UserRegistration();
-		assertEquals(expectedValue, user.validateEmail(email));
+	public void givenFirstName_Valid_shouldReturnValid() {
+		assertEquals("valid", user.validateFirstName("Abc"));
+	}
+	@Test
+	public void givenLastName_Valid_shouldReturnValid() {
+		assertEquals("valid", user.validateLastName("Abc"));
+	}
+	@Test
+	public void givenEmail_Valid_shouldReturnValid() {
+		assertEquals("valid", user.validateEmail("abc@gmail.com"));
+	}
+	@Test
+	public void givenMobileNumber_Valid_shouldReturnValid() {
+		assertEquals("valid", user.validateMobileNumber("91 7738454018"));
+	}
+	@Test
+	public void givenPassword_Valid_shouldReturnValid() {
+		assertEquals("valid", user.validatePassword("Shivam9@p"));
+	}
+	@Test
+	public void givenFirstName_Invalid_shouldReturnInvalid() {
+		assertEquals("invalidFirstName", user.validateFirstName("S"));
+	}
+	@Test
+	public void givenLastName_Invalid_shouldReturnInvalid() {
+		assertEquals("invalidLastName", user.validateLastName("Sh"));
+	}
+	@Test
+	public void givenEmail_Invalid_shouldReturnInvalid() {
+		assertEquals("invalidEmail", user.validateEmail("Shivam"));
+	}
+	@Test
+	public void givenMobileNumber_Invalid_shouldReturnInvalid() {
+		assertEquals("invalidMobileNumber", user.validateMobileNumber("Shivam"));
+	}
+	@Test
+	public void givenPassword_Invalid_shouldReturnInvalid() {
+		assertEquals("invalidPassword", user.validatePassword("Shivam"));
 	}
 	
 }
-
-
-/*	@Test
-	public void givenEntry_whenAllDataIsValid_thenReturnHappyMood() {
-		UserRegistration obj = new UserRegistration();
-		String name = obj.validateName("Bridgelabz");
-		String email = obj.validateEmail("abc@gmail.com");
-		String number = obj.validateMobileNumber("91 7738454018");
-		String password = obj.validatePassword("Bridgelabz99@");		
-		assertTrue(name.equals("valid") && email.equals("valid") && number.equals("valid") && password.equals("valid"));
-		System.out.println("Happy Mood");
-	}
-	@Test
-	public void givenEntry_whenAnyDataIsInvalid_thenReturnSadMood() {
-		UserRegistration obj = new UserRegistration();
-		String name = obj.validateName("Bridgelabz");
-		String email = obj.validateEmail("abc.xyz@bl.co.in");
-		String number = obj.validateMobileNumber("91 7738454018");
-		String password = obj.validatePassword("Bridgelabz99@");
-		assertTrue(name.equals("invalid") || email.equals("invalid") || number.equals("invalid") || password.equals("invalid"));
-		System.out.println("Sad Mood");
-		*/
-
-
