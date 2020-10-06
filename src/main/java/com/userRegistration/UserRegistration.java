@@ -5,84 +5,95 @@ import java.util.regex.Pattern;
 
 
 public class UserRegistration {
-	public static boolean validateInput (String input,String expression) {
-		String regex = expression;
+	static final String regexForName = "^[A-Z]{1}[a-zA-z]{2,}";
+	static final String regexForEmail = "^[A-Z]{1}[a-zA-z]{2,}";
+	static final String regexForMobileNumber = "^[A-Z]{1}[a-zA-z]{2,}";
+	static final String regexForPassword = "^[A-Z]{1}[a-zA-z]{2,}";
+	public static boolean validateInput(String input, String regex) {
+		boolean result;
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(input);
-		return matcher.find();
+		if(matcher.find()) {
+			result = true;
+		}
+		else {
+			result = false;
+		}	
+		return result;
 	}
 	public static String validateFirstName(String firstName) {
 		String result = "";
 		try {
-		if(validateInput(firstName, "^[A-Z]{1}[a-zA-z]{2,}")) {
-			result = "valid";
-		}
-		else {
-			throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidCredentials.invalidFirstName, "Invalid User Details");
-		}
+			if(validateInput(firstName, regexForName)) {
+				result = "valid";
+			}
+			else {
+				throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidCredentials.invalidFirstName, "Invalid User Details");
+			}
 		}
 		catch(InvalidUserDetailsException exception) {
-			return exception.type.toString();
+			result = exception.type.toString();
 		}
 		return result;
 	}
 	public static String validateLastName(String lastName) {
 		String result = "";
 		try {
-		if(validateInput(lastName, "^[A-Z]{1}[a-zA-z]{2,}")) {
-			result = "valid";
-		}
-		else {
-			throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidCredentials.invalidLastName, "Invalid User Details");
-		}
+			if(validateInput(lastName, regexForName)) {
+				result = "valid";
+			}
+			else {
+				throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidCredentials.invalidLastName, "Invalid User Details");
+			}
 		}
 		catch(InvalidUserDetailsException exception) {
-			return exception.type.toString();
+			result = exception.type.toString();
 		}
 		return result;
 	}
 	public static String validateEmail(String email) {
 		String result = "";
 		try {
-		if(validateInput(email, "^[a-zA-Z0-9_]+[-+.]?[A-Za-z0-9_]+@[A-Za-z0-9]+[.][a-z]{2,}[.]?([a-z]{2,})?$")) {
-			result = "valid";
-		}
-		else {
-			throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidCredentials.invalidEmail, "Invalid User Details");
-		}
+			if(validateInput(email, regexForEmail)) {
+				result = "valid";
+			}
+			else {
+				throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidCredentials.invalidEmail, "Invalid User Details");
+			}
 		}
 		catch(InvalidUserDetailsException exception) {
-			return exception.type.toString();
+			result = exception.type.toString();
 		}
 		return result;
 	}
 	public static String validateMobileNumber(String number) {
 		String result = "";
 		try {
-		if(validateInput(number, "^[0-9]{2}?[ ][0-9]{4,13}")) {
-			result = "valid";
-		}
-		else {
-			throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidCredentials.invalidMobileNumber, "Invalid User Details");
-		}
+			if(validateInput(number, regexForMobileNumber)) {
+				result = "valid";
+			}
+			else
+			{
+				throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidCredentials.invalidMobileNumber, "Invalid User Details");
+			}
 		}
 		catch(InvalidUserDetailsException exception) {
-			return exception.type.toString();
+			result = exception.type.toString();
 		}
 		return result;
 	}
 	public static String validatePassword(String password) {
 		String result = "";
 		try {
-		if(validateInput(password, "^(?=.*\\d)(?=.*[A-Z])(?=.*[@$!%*?&]).{8,}$")) {
-			result = "valid";
-		}
-		else {
-			throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidCredentials.invalidPassword, "Invalid User Details");
-		}
+			if(validateInput(password,regexForPassword)) {
+				result = "valid";
+			}
+			else {
+				throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidCredentials.invalidPassword, "Invalid User Details");
+			}
 		}
 		catch(InvalidUserDetailsException exception) {
-			return exception.type.toString();
+			result = exception.type.toString();
 		}
 		return result;
 	}
@@ -92,8 +103,7 @@ public class UserRegistration {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter the first name");
 		test = input.nextLine();
-		String result = user.validateFirstName(test);//validation of first name	
-		System.out.println(result);
+		System.out.println(user.validateFirstName(test));//validation of first name	
 		System.out.println("Enter the last name");
 		test = input.nextLine();
 		System.out.println(user.validateLastName(test));//validation of last name

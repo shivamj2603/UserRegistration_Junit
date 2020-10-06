@@ -1,9 +1,12 @@
 package com.userRegistration;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+
 
 public class UserRegistrationTest{
 	UserRegistration user = new UserRegistration();
@@ -47,5 +50,5 @@ public class UserRegistrationTest{
 	public void givenPassword_Invalid_shouldReturnInvalid() {
 		assertEquals("invalidPassword", user.validatePassword("Shivam"));
 	}
-	
+
 }
